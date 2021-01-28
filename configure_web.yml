@@ -7,3 +7,18 @@
       shell: rpm -q httpd
       register: result
       failed_when: result.rc == 1
+      
+    - name: block1
+      block:
+        - name: creating logs directory
+          file:
+            path: /var/www/html/logs
+            state: directory
+            mode: 0755
+            
+    - name: creating index.html file
+      file:
+        path: /var/www/html/index.html
+        state: file
+        
+
