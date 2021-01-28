@@ -1,0 +1,9 @@
+---
+- name: Package
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Check if httpd is installed
+      shell: rpm -q httpd
+      register: result
+      failed_when: result.rc == 1
