@@ -1,0 +1,19 @@
+---
+- name: tags
+  hosts: all
+  become: true
+  tasks:
+    - name: Install the servers
+      yum:
+        name:
+          - httpd
+          - memcached
+        state: present
+      register: deb_res
+      tags:
+        - packages
+        - webservers
+    - name: debug result
+      debug:
+        msg: "{{ deb_res }}"
+      tags: deb
